@@ -11,5 +11,5 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Login />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
