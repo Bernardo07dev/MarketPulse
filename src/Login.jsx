@@ -27,7 +27,7 @@ const Login = () => {
             </div>
         </section>
 
-        <section className='w-[55%] h-screen bg-gradient-to-b from-[#131937] via-[#0b1325] to-[#0e102b] p-12 flex flex-col justify-center items-center'>
+        <section className='w-[55%] h-screen bg-gradient-to-br from-[#0d1428] via-[#050a18] to-[#020408]  p-12 flex flex-col justify-center items-center'>
             <LoginBox />
         </section>
       </main>
