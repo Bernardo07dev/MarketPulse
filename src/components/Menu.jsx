@@ -1,6 +1,6 @@
 const Menu = () => {
     return (
-        <header className="w-full h-20 bg-[#111827] flex items-center justify-between px-10 border-b border-white/10">
+        <header className="w-full h-18 bg-[#111827] flex items-center justify-between px-10 border-b border-white/10">
             <div className="flex items-center gap-3">
                 <img src="/logo.svg" alt="Invest Track"className="w-[150px] saturate-[0.6] hue-rotate-60" />
             </div>
