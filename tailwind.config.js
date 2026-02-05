@@ -4,7 +4,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        financas: ['"Montserrat"', 'sans-serif'], 
+      },
+    },
   },
   plugins: [],
 }
