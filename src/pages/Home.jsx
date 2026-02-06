@@ -1,7 +1,6 @@
 import Menu from "../components/Menu.jsx";
 import SideBar from "../components/SiderBar.jsx";
 import StockSection from "../components/Stock.jsx";
-import Chart from "../components/Chart.jsx";
 
 const Home = () => {
     const STOCKS = [
@@ -24,8 +23,6 @@ const Home = () => {
                         <StockSection key={index} stock={s} />
                     ))}
                     </div>
-
-                    <Chart />
                 </section>
 
             </div>

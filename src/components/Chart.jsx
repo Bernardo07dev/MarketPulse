@@ -7,8 +7,13 @@ const Chart = () => {
   useEffect(() => {
     const chart = createChart(chartContainerRef.current, {
       layout: {
-        textColor: 'black',
-        background: { type: 'solid', color: 'white' },
+        textColor: 'white',
+        background: { type: 'solid', color: '#161E2E' },
+      },
+
+      grid: {
+        vertLines: { visible: false },
+        horzLines: { visible: false },
       },
       width: chartContainerRef.current.clientWidth,
       height: 300,
