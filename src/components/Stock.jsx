@@ -23,6 +23,7 @@ const Stock = (props) => {
                     }
                 })
                 SetStockData(response.data.stocks[0] || None)
+                console.log(response.data.stocks[0] || None)
                 positive_negative(response.data.stocks[0].change)
             } catch (error){
                 console.error(error)
@@ -30,17 +31,25 @@ const Stock = (props) => {
         }; FetchData();
     }, [])
 
+    const link = `https://icons.brapi.dev/icons/${props.stock}.svg`;
+    console.log(link)
+
     return(
-        <section className="flex w-[24%] cursor-pointer bg-[#1E293B]/50 border border-white/10 p-6 text-white rounded-lg items-start justify-between">
-            <div className="flex flex-col justify-start items-start gap-2">
-                <p className="text-xs p-2 bg-white/10 rounded-lg w-fit">{StockData.sector}</p>
-                <h1 className="font-medium text-gray-300 font-financas ml-1">{props.stock}</h1>
+        <section className="flex flex-col w-[24%] cursor-pointer bg-[#1E293B]/50 border border-white/10 p-6 text-white rounded-lg">
+            <div className="w-full flex flex-row items-end justify-between">
+                <div className="flex flex-col justify-start items-start gap-4">
+                    <p className="text-xs p-2 bg-white/10 rounded-lg w-fit font-semibold">{StockData.sector}</p>
+                    <div className="flex flex-row gap-1 justify-start">
+                        <img className="w-6 rounded-lg" src={link}></img>
+                        <h1 className="text-sm font-medium text-gray-300 font-financas ml-1">{StockData.stock}</h1>
+                    </div>
+                </div>
+                <div className="flex flex-col justify-start items-start font-financas gap-1">
+                    <p className="text-2xl font-bold text-gray-100 pr-2">{StockData.close}</p>
+                    {Red_Green ? (
+                        <p className="text-xs p-1 px-2 bg-green-800/30 text-green-500 rounded-lg w-fit">{StockData.change}</p>
+                    ) : (<p className="text-xs p-1 px-2 bg-red-800/30 text-red-500 rounded-lg w-fit">{StockData.change}</p>)}
             </div>
-            <div className="flex flex-col justify-start items-start font-financas gap-1">
-                <p className="text-3xl font-bold text-gray-100 pr-2">{StockData.close}</p>
-                {Red_Green ? (
-                    <p className="text-xs p-1 px-2 bg-green-800/30 text-green-500 rounded-lg w-fit">{StockData.change}</p>
-                ) : (<p className="text-xs p-1 px-2 bg-red-800/30 text-red-500 rounded-lg w-fit">{StockData.change}</p>)}
             </div>
         </section>
     )

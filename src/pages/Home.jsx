@@ -1,6 +1,7 @@
 import Menu from "../components/Menu.jsx";
 import SideBar from "../components/SiderBar.jsx";
-import StockSection from "../components/Stock.jsx"
+import StockSection from "../components/Stock.jsx";
+import Chart from "../components/Chart.jsx";
 
 const Home = () => {
     const STOCKS = [
@@ -19,10 +20,13 @@ const Home = () => {
                 <section className="w-[92%] p-8 bg-[#0F172A]">
                     <div className="flex flex-row gap-4 flex-wrap">
                     {STOCKS.map((s, index) => (
-                        <StockSection stock={s}/>
+                        <StockSection key={index} stock={s} />
                     ))}
                     </div>
+
+                    <Chart />
                 </section>
+
             </div>
         </main>
     )
