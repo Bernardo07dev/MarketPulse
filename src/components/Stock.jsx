@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Stock = (props) => {
     const API_KEY = import.meta.env.VITE_API_KEY;
     const API_URL = 'https://brapi.dev/api/quote/list';
     const [StockData, SetStockData] = useState([])
     const [Red_Green, SetRed_Green] = useState(true)
+    const navigate = useNavigate();
 
     const positive_negative = (value) => {
         if (Number(value) < 0){
@@ -35,7 +37,7 @@ const Stock = (props) => {
     console.log(link)
 
     return(
-        <section className="flex flex-col w-[24%] cursor-pointer bg-[#1E293B]/50 border border-white/10 p-6 text-white rounded-lg">
+        <section onClick={() => navigate(`/chart/${props.stock}`)} className="flex flex-col w-[24%] cursor-pointer bg-[#1E293B]/50 border border-white/10 p-6 text-white rounded-lg">
             <div className="w-full flex flex-row items-end justify-between">
                 <div className="flex flex-col justify-start items-start gap-4">
                     <p className="text-xs p-2 bg-white/10 rounded-lg w-fit font-semibold">{StockData.sector}</p>

@@ -8,6 +8,7 @@ const Home = () => {
         "PETR4", "VALE3", "ITUB4", "ABEV3", "BBDC4", "BBAS3",
         "AAPL", "TSLA"
         ];
+    
 
     return (
         <main className="bg-[#111827] min-h-screen flex flex-col">
