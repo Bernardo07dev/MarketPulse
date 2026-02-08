@@ -49,9 +49,9 @@ const Stock = (props) => {
                 <div className="flex flex-col justify-start items-start font-financas gap-1">
                     <p className="text-2xl font-bold text-gray-100 pr-2">{StockData.close}</p>
                     {Red_Green ? (
-                        <p className="text-xs p-1 px-2 bg-green-800/30 text-green-500 rounded-lg w-fit">{StockData.change}</p>
-                    ) : (<p className="text-xs p-1 px-2 bg-red-800/30 text-red-500 rounded-lg w-fit">{StockData.change}</p>)}
-            </div>
+                        <p className="text-xs p-1 px-2 bg-green-800/30 text-green-500 rounded-lg w-fit">+{StockData.change}%</p>
+                    ) : (<p className="text-xs p-1 px-2 bg-red-800/30 text-red-500 rounded-lg w-fit">{StockData.change}%</p>)}
+                </div>
             </div>
         </section>
     )

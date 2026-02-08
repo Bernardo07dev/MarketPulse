@@ -1,16 +1,55 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createChart, CandlestickSeries } from 'lightweight-charts';
+import axios from 'axios';
 
-const Chart = () => {
+const Chart = ({ ticker }) => {
   const chartContainerRef = useRef(null);
+  const chartRef = useRef(null);
+  const seriesRef = useRef(null);
+
+  const [candles, setCandles] = useState([]);
+
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_URL = `https://brapi.dev/api/quote/${ticker}`;
 
   useEffect(() => {
-    const chart = createChart(chartContainerRef.current, {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(API_URL, {
+          params: {
+            token: API_KEY,
+            range: '1mo',
+            interval: '1d',
+          },
+        });
+
+        const data = response.data?.results?.[0]?.historicalDataPrice || [];
+
+        const formatted = data.map(item => ({
+          time: item.date,
+          open: item.open,
+          high: item.high,
+          low: item.low,
+          close: item.close,
+        }));
+
+        setCandles(formatted);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, [ticker]);
+
+  useEffect(() => {
+    if (!chartContainerRef.current) return;
+
+    chartRef.current = createChart(chartContainerRef.current, {
       layout: {
         textColor: 'white',
         background: { type: 'solid', color: '#161E2E' },
       },
-
       grid: {
         vertLines: { visible: false },
         horzLines: { visible: false },
@@ -19,28 +58,23 @@ const Chart = () => {
       height: 300,
     });
 
-    const candlestickSeries = chart.addSeries(CandlestickSeries, {
-      upColor: '#26a69a',
-      downColor: '#ef5350',
+    seriesRef.current = chartRef.current.addSeries(CandlestickSeries, {
+      upColor: '#6469F2',
+      downColor: '#FFFFFF1A',
       borderVisible: false,
-      wickUpColor: '#26a69a',
-      wickDownColor: '#ef5350',
+      wickUpColor: '#6469F2',
+      wickDownColor: '#FFFFFF1A',
     });
 
-    candlestickSeries.setData([
-      { open: 10, high: 10.63, low: 9.49, close: 9.55, time: 1642427876 },
-      { open: 9.55, high: 10.30, low: 9.42, close: 9.94, time: 1642514276 },
-      { open: 9.94, high: 10.17, low: 9.92, close: 9.78, time: 1642600676 },
-      { open: 9.78, high: 10.59, low: 9.18, close: 9.51, time: 1642687076 },
-      { open: 9.51, high: 10.46, low: 9.10, close: 10.17, time: 1642773476 },
-      { open: 10.17, high: 10.96, low: 10.16, close: 10.47, time: 1642859876 },
-      { open: 10.47, high: 11.39, low: 10.40, close: 10.81, time: 1642946276 },
-    ]);
-
-    chart.timeScale().fitContent();
-
-    return () => chart.remove();
+    return () => chartRef.current?.remove();
   }, []);
+
+  useEffect(() => {
+    if (seriesRef.current && candles.length > 0) {
+      seriesRef.current.setData(candles);
+      chartRef.current.timeScale().fitContent();
+    }
+  }, [candles]);
 
   return <div ref={chartContainerRef} style={{ width: '100%' }} />;
 };
