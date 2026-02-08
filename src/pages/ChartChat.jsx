@@ -10,6 +10,7 @@ const ChartChat = () => {
     const [StockData, SetStockData] = useState([])
     const [Red_Green, SetRed_Green] = useState(true)
     const API_KEY = import.meta.env.VITE_API_KEY;
+    console.log(API_KEY)
     const API_URL = `https://brapi.dev/api/quote/${ticker}`;
     const formatMarketCap = (value) => {
         if (typeof value !== 'number') return '--';
