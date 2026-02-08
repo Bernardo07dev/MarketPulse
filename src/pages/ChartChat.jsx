@@ -87,15 +87,15 @@ const ChartChat = () => {
                             <div className="grid grid-cols-2 gap-4 w-full font-financas">
                                 <div className="bg-[#6469F2]/5 border border-[#6469F2]/5 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
                                     <p className="text-xs text-gray-200 mb-1">P/L (Price / Earnings)</p>
-                                    <p className="text-xl font-semibold text-white">{StockData?.priceEarnings?.toFixed(2) || 'N/A'}</p>
+                                    <p className="text-xl font-semibold text-white">{StockData?.priceEarnings?.toFixed(2) || '--'}</p>
                                 </div>
                                 <div className="bg-[#6469F2]/5 border border-[#6469F2]/10 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
                                     <p className="text-xs text-gray-200 mb-1">Lucro por Ação</p>
-                                    <p className="text-xl font-semibold text-white">{StockData?.earningsPerShare?.toFixed(2) || 'N/A'}</p>
+                                    <p className="text-xl font-semibold text-white">{StockData?.earningsPerShare?.toFixed(2) || '--'}</p>
                                 </div>
                                 <div className="bg-[#6469F2]/5 border border-[#6469F2]/10 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
                                     <p className="text-xs text-gray-200 mb-1">Moeda</p>
-                                    <p className="text-xl font-semibold text-white">{StockData?.currency || 'N/A'}</p>
+                                    <p className="text-xl font-semibold text-white">{StockData?.currency || '--'}</p>
                                 </div>
                                 <div className="bg-[#6469F2]/5 border border-[#6469F2]/10 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
                                     <p className="text-xs text-gray-200 mb-1">Valor de Mercado</p>
