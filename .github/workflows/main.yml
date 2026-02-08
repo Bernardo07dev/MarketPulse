@@ -21,7 +21,7 @@ jobs:
     - name: Instalar e Buildar
       run: npm install && npm run build
       env:
-        VITE_API_TOKEN: ${{ secrets.VITE_API_TOKEN }}
+        VITE_API_TOKEN: ${{ secrets.VITE_API_KEY }}
 
     - name: Configurar AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
